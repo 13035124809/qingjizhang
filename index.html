@@ -103,8 +103,9 @@ input{font-family:inherit;border:none;outline:none;background:none;color:inherit
 .amount-wrap{text-align:center;padding:18px 20px 8px;}
 #amountDisplay{
   font-size:52px;font-weight:700;letter-spacing:-1px;line-height:1.15;
-  font-variant-numeric:tabular-nums;
+  font-variant-numeric:tabular-nums;white-space:nowrap;overflow-x:auto;
 }
+#amountDisplay::-webkit-scrollbar{display:none;}
 #amountDisplay .cur{font-size:30px;font-weight:600;color:var(--label2);margin-right:6px;}
 #amountDisplay.exp{color:var(--red);}
 #amountDisplay.inc{color:var(--green);}
@@ -147,7 +148,7 @@ input{font-family:inherit;border:none;outline:none;background:none;color:inherit
 .list-summary{display:flex;padding:4px 2px 0;}
 .sum-col{flex:1;text-align:center;}
 .sum-col .lbl{font-size:12px;color:var(--label2);margin-bottom:4px;}
-.sum-col .amt{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums;}
+.sum-col .amt{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .sum-col .amt.exp{color:var(--red);}
 .sum-col .amt.inc{color:var(--green);}
 .sum-col .amt.net{color:var(--label);}
@@ -173,7 +174,7 @@ input{font-family:inherit;border:none;outline:none;background:none;color:inherit
 .item .body{flex:1;min-width:0;}
 .item .body .nm{font-size:15px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .item .body .nt{font-size:12px;color:var(--label2);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.item .amt{font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;}
+.item .amt{font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;flex-shrink:0;min-width:70px;text-align:right;}
 .item .amt.exp{color:var(--red);}
 .item .amt.inc{color:var(--green);}
 
@@ -187,7 +188,7 @@ input{font-family:inherit;border:none;outline:none;background:none;color:inherit
 .asset-total{font-size:38px;font-weight:800;letter-spacing:-.5px;margin:4px 0 2px;font-variant-numeric:tabular-nums;}
 .stat-card{flex:1;background:var(--card);border-radius:14px;padding:14px;box-shadow:var(--shadow);}
 .stat-card .lbl{font-size:12px;color:var(--label2);margin-bottom:6px;}
-.stat-card .val{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2;}
+.stat-card .val{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .stat-card.exp .val{color:var(--red);}
 .stat-card.inc .val{color:var(--green);}
 .stat-card.net .val{color:var(--label);}
@@ -211,23 +212,24 @@ input{font-family:inherit;border:none;outline:none;background:none;color:inherit
 .legend-row{display:flex;align-items:center;gap:8px;padding:4.5px 0;font-size:13px;}
 .legend-row .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
 .legend-row .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--label);}
-.legend-row .pv{color:var(--label2);font-variant-numeric:tabular-nums;}
-.legend-row .am{font-weight:600;font-variant-numeric:tabular-nums;}
+.legend-row .pv{color:var(--label2);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.legend-row .am{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
-.bars{display:flex;align-items:flex-end;gap:5px;height:120px;padding:8px 2px 0;}
-.bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:4px;}
-.bar .bv{font-size:10px;color:var(--label2);font-variant-numeric:tabular-nums;transform:scale(.92);transform-origin:bottom;}
+.bars{display:flex;align-items:flex-end;gap:4px;height:120px;padding:8px 2px 0;overflow-x:auto;}
+.bars::-webkit-scrollbar{display:none;}
+.bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:4px;min-width:22px;}
+.bar .bv{font-size:10px;color:var(--label2);font-variant-numeric:tabular-nums;transform:scale(.85);transform-origin:bottom;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
 .bar .bl{height:100%;width:100%;border-radius:5px 5px 2px 2px;background:var(--fill);position:relative;min-height:4px;transition:height .4s ease;}
 .bar .bl i{position:absolute;bottom:0;left:0;right:0;border-radius:5px 5px 2px 2px;background:var(--blue);transition:height .4s ease;}
-.bar .bd{font-size:10px;color:var(--label2);margin-top:3px;white-space:nowrap;transform:scale(.9);transform-origin:top;}
+.bar .bd{font-size:9px;color:var(--label2);margin-top:3px;white-space:nowrap;transform:scale(.8);transform-origin:top;}
 .bar.today .bd{color:var(--blue);font-weight:600;}
 
 .cat-row{display:flex;align-items:center;gap:10px;padding:9px 0;}
 .cat-row + .cat-row{border-top:.5px solid var(--sep);}
 .cat-row .ico{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
 .cat-row .nm{flex:1;font-size:14px;font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.cat-row .pv{font-size:12px;color:var(--label2);width:38px;text-align:right;font-variant-numeric:tabular-nums;}
-.cat-row .am{font-size:14px;font-weight:600;width:86px;text-align:right;font-variant-numeric:tabular-nums;}
+.cat-row .pv{font-size:12px;color:var(--label2);width:38px;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cat-row .am{font-size:14px;font-weight:600;width:86px;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .cat-row .bar{flex:none;width:34px;height:5px;border-radius:3px;background:var(--card3);overflow:hidden;margin-top:0;}
 .cat-row .bar i{display:block;height:100%;border-radius:3px;}
 
@@ -239,7 +241,7 @@ input{font-family:inherit;border:none;outline:none;background:none;color:inherit
 .set-item + .set-item::before{content:"";position:absolute;top:0;left:16px;right:0;height:.5px;background:var(--sep);}
 .set-item .l{display:flex;align-items:center;gap:11px;font-size:15.5px;}
 .set-item .l .si{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
-.set-item .v{font-size:14px;color:var(--label2);display:flex;align-items:center;gap:5px;max-width:60%;overflow:hidden;}
+.set-item .v{font-size:14px;color:var(--label2);display:flex;align-items:center;gap:5px;max-width:60%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
 .set-item .v .chev{width:14px;height:14px;color:var(--label3);flex-shrink:0;}
 .set-item:active{background:var(--card2);}
 .set-item:first-child{border-radius:14px 14px 0 0;}
@@ -906,9 +908,10 @@ function renderStats(){
   const allExp=sumByType(state.transactions,'expense'), allInc=sumByType(state.transactions,'income');
   const base=state.settings.initialAsset||0;
   $('#assetTotal').textContent=fmtMoney(base+allInc-allExp);
-  $('#assetDetail').textContent = base>0
-    ? `初始资产 ${fmtMoney(base)} · 累计收入 ${fmtMoney(allInc)} · 支出 ${fmtMoney(allExp)}`
-    : `累计收入 ${fmtMoney(allInc)} · 支出 ${fmtMoney(allExp)} · 未设初始资产`;
+  $('#assetDetail').innerHTML = base>0
+    ? `<span>初始资产 ${fmtMoney(base)}</span><span>·</span><span>累计收入 ${fmtMoney(allInc)}</span><span>·</span><span>支出 ${fmtMoney(allExp)}</span>`
+    : `<span>累计收入 ${fmtMoney(allInc)}</span><span>·</span><span>支出 ${fmtMoney(allExp)}</span><span>·</span><span>未设初始资产</span>`;
+  $('#assetDetail').style.cssText='display:flex;flex-wrap:wrap;justify-content:center;gap:2px 6px;margin-top:4px;';
 
   // 预算（仅本月且按月查看时显示）
   const bCard=$('#budgetCard');
@@ -981,12 +984,13 @@ function renderBars(box,daily,isWeek){
   const max=Math.max(...daily.map(d=>d.v),1);
   const dayCN=d=>{ const dd=parseDate(d); return (dd.getMonth()+1)+'/'+dd.getDate(); };
   if(!daily.some(d=>d.v>0)){ box.innerHTML=`<div class="empty" style="padding:24px;"><div class="e-ico">📈</div><div class="e-s">本期暂无数据</div></div>`; return; }
-  box.innerHTML=`<div class="bars">${daily.map(d=>{
+  box.innerHTML=`<div class="bars">${daily.map((d,i)=>{
     const h=Math.max(d.v/max*100, d.v>0?4:0);
+    const label = isWeek ? WEEK_CN[parseDate(d.d).getDay()] : (i%5===0||i===daily.length-1 ? dayCN(d.d) : '');
     return `<div class="bar ${d.d===todayStr()?'today':''}">
       <div class="bv" style="opacity:${d.v>0?1:0}">${d.v>0?fmtNum(d.v):''}</div>
       <div class="bl"><i style="height:${h}%;${d.d===todayStr()?'background:var(--blue)':''}"></i></div>
-      <div class="bd">${isWeek?WEEK_CN[parseDate(d.d).getDay()]:dayCN(d.d)}</div></div>`;
+      <div class="bd">${label}</div></div>`;
   }).join('')}</div>`;
 }
 $('#statsSeg').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return; statsMode=b.dataset.p; statsOffset=0;
@@ -1328,6 +1332,7 @@ function init(){
   applyTheme();
   renderCats(); renderEntryDate(); renderEntryNote();
   renderList(); renderStats(); renderSettings();
+  switchTab('entry');
   /* 注册 Service Worker 实现离线缓存（HTTPS 环境下生效） */
   if('serviceWorker' in navigator){
     window.addEventListener('load',()=>{
